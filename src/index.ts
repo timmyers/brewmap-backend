@@ -12,7 +12,7 @@ app.use(koaBody());
 
 router.post('/graphql', graphqlKoa({ schema: schema }));
 router.get('/', async (ctx) => {
-  ctx.body = 'Hello World!';
+  ctx.body = 'Hello nanobox!';
 });
 
 app.use(router.routes());
