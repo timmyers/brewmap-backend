@@ -14,9 +14,9 @@ jobs:
             # nanobox-update
             nanobox config set ci-mode true
             nanobox config set ci-sync-verbose true
-            sudo nanobox server --trace &
+            nanobox server --trace &
       - run:
           name: Nanobox Deploy
           command: |
             nanobox remote add brewmap
-            # nanobox deploy
+            nanobox deploy
