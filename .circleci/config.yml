@@ -15,6 +15,7 @@ jobs:
             nanobox config set ci-mode true
             nanobox config set ci-sync-verbose true
             sudo nanobox server --trace &
+            sleep 1000
       - run:
           name: Nanobox Deploy
           command: |
