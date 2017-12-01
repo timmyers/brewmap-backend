@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/nodejs
+      - image: circleci/node
     steps:
       - checkout
       - setup_remote_docker
