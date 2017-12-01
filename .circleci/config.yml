@@ -2,12 +2,24 @@ version: 2
 
 jobs:
   build:
-    machine: true
-    # docker:
-    #   - image: timmyers/nanobox-ci
+    docker:
+      image: circleci/node
     steps:
       - checkout
-      # - setup_remote_docker
+      - run:
+          name: build
+          command: yarn build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - dist
+
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: Install nanobox
           command: |
