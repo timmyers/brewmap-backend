@@ -1,0 +1,15 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/nodejs
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install nanobox
+          command: |
+            bash -c "$(curl -fsSL https://s3.amazonaws.com/tools.nanobox.io/bootstrap/ci.sh)"
+            nanobox config set ci-mode true
+            nanobox config set ci-sync-verbose true

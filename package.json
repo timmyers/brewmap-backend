@@ -1,0 +1,30 @@
+{
+  "name": "brewmap-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:timmyers/brewmap-backend.git",
+  "author": "Tim Myers <timmyers09@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-koa": "^1.2.0",
+    "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "@types/koa": "^2.0.41",
+    "@types/koa-bodyparser": "^3.0.26",
+    "@types/koa-router": "^7.0.26",
+    "babel-loader": "8.0.0-beta.0",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
+}

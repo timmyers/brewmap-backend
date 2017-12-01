@@ -1,0 +1,7 @@
+run.config:
+  engine: nodejs
+  engine.config:
+    runtime: nodejs-8.9
+
+web.main:
+  start: node dist/main.js
