@@ -11,6 +11,7 @@ jobs:
           name: Install nanobox
           command: |
             bash -c "$(curl -fsSL https://s3.amazonaws.com/tools.nanobox.io/bootstrap/ci.sh)"
+            nanobox-update
             nanobox config set ci-mode true
             nanobox config set ci-sync-verbose true
             sudo nanobox server &
