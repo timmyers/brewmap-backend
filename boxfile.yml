@@ -5,3 +5,6 @@ run.config:
 
 web.main:
   start: node dist/main.js
+
+data.postgres:
+  image: nanobox/postgresql:9.5
