@@ -28,4 +28,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts'],
   },
+  externals: [
+      "pg-native",
+  ],
 };

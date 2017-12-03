@@ -5,3 +5,7 @@ type Brewery {
   lat: Float!
   lng: Float!
 }
+
+type Query {
+  allBreweries: [Brewery!]!
+}
