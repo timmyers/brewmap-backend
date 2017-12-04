@@ -1,5 +1,5 @@
 type Brewery {
-  ID: ID!
+  id: ID!
   name: String!
 
   lat: Float!
