@@ -1,6 +1,7 @@
 import koa from 'koa';
 import koaRouter from 'koa-router';
 import koaBody from 'koa-bodyparser';
+import koaCors from 'koa-cors';
 import { graphql, graphiql } from './graphql';
 
 const app = new koa();
@@ -8,6 +9,9 @@ const router = new koaRouter();
 const PORT = 8080;
 
 app.use(koaBody());
+app.use(koaCors({
+  origin: 'https://www.brewmap.co'
+}))
 
 router.post('/graphql', graphql);
 router.get('/graphiql', graphiql);
