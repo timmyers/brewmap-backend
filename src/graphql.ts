@@ -1,4 +1,4 @@
-import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import schema from './schemas/brewery.graphql';
 import { allBreweries } from './resolvers/brewery';
@@ -9,5 +9,7 @@ const resolvers = {
   },
 };
 
-export const graphql = graphqlKoa({ schema: makeExecutableSchema({ typeDefs: schema, resolvers }) });
-export const graphiql = graphiqlKoa({ endpointURL: '/graphql' });
+export const graphql = graphqlExpress({
+  schema: makeExecutableSchema({ typeDefs: schema, resolvers })
+});
+export const graphiql = graphiqlExpress({ endpointURL: '/graphql' });
