@@ -25,7 +25,7 @@ const jwtCheck = jwt({
   }),
   credentialsRequired: false,
   audience: 'https://api.brewmap.co',
-  issuer: `https://${process.env.auth0Domain}`,
+  issuer: `https://${process.env.auth0Domain}/`,
   algorithms: ['RS256']
 });
 
