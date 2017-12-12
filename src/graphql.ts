@@ -1,15 +1,25 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import schema from './schemas/brewery.graphql';
-import { allBreweries } from './resolvers/brewery';
+import { allBreweries, setVisited, getVisited } from './resolvers/brewery';
 
 const resolvers = {
   Query: {
     allBreweries,
   },
+  Mutation: {
+    setVisited,
+  },
+  Brewery: {
+    visited: getVisited,
+  }
 };
 
-export const graphql = graphqlExpress({
-  schema: makeExecutableSchema({ typeDefs: schema, resolvers })
-});
+const exeSchema = makeExecutableSchema({ typeDefs: schema, resolvers });
+
+export const graphql = graphqlExpress(req => ({
+  schema: exeSchema,
+  context: { user: req.user },
+}));
+
 export const graphiql = graphiqlExpress({ endpointURL: '/graphql' });

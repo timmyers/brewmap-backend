@@ -33,7 +33,6 @@ app.use(cors(corsOptions));
 app.use(jwtCheck);
 
 app.use('/graphql', bodyParser.json(), (req, res, next) => {
-  console.log(req.user);
   graphql(req, res, next);
 });
 

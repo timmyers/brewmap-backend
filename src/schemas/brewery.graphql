@@ -4,8 +4,24 @@ type Brewery {
 
   lat: Float!
   lng: Float!
+
+  visited: Boolean
+}
+
+type User {
+  id: ID!
+}
+
+type BreweryVisit {
+  id: ID!
+  brewery: Brewery!
+  user: User!
 }
 
 type Query {
   allBreweries: [Brewery!]!
+}
+
+type Mutation {
+  setVisited(brewery: String!, visited: Boolean!): Boolean!
 }
