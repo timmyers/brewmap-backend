@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import init from './index';
+import { getBrewery } from './brewery';
 
 const visitInit = async () => {
   const db = await init();
@@ -14,7 +15,7 @@ export const setVisited = async(userID: string,
   const breweryID = new ObjectId(breweryIDString);
 
   if (visited) {
-    return await visits.findOneAndUpdate({
+    await visits.findOneAndUpdate({
       user: userID,
       brewery: breweryID,
     }, {
@@ -25,11 +26,15 @@ export const setVisited = async(userID: string,
     },
     { upsert: true });
   } else {
-    return await visits.deleteOne({
+    await visits.deleteOne({
       user: userID,
       brewery: breweryID,
     });
   }
+
+  const brewery = await getBrewery(breweryIDString);
+  brewery.visited = visited;
+  return brewery;
 }
 
 export const getVisited = async(userID: string,

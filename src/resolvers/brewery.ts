@@ -8,14 +8,12 @@ export const allBreweries = async () => {
   return await getBreweries();
 };
 
-export const setVisited = async(_: any, { brewery }: { brewery: string }, context: any ) => {
+export const setVisited = async(_: any, { brewery, visited }: { brewery: string, visited: boolean }, context: any ) => {
   if (!context.user) {
     return false;
   }
 
-  await setVisitedDB(context.user.sub, brewery, true);
-
-  return true;
+  return await setVisitedDB(context.user.sub, brewery, visited);
 }
 
 export const getVisited = async(obj: any, params: any, context: any ) => {
