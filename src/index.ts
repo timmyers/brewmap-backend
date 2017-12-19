@@ -24,7 +24,7 @@ const jwtCheck = jwt({
     jwksUri: `https://${process.env.auth0Domain}/.well-known/jwks.json`
   }),
   credentialsRequired: false,
-  audience: 'https://api.brewmap.co',
+  audience: 'https://api.brewedhere.co',
   issuer: `https://${process.env.auth0Domain}/`,
   algorithms: ['RS256']
 });
