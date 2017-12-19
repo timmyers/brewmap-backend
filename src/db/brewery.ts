@@ -17,6 +17,23 @@ export const getBrewery = async (breweryID: string) => {
   return brewery;
 }
 
+export const addBrewery = async (name: string, lat: number, lng: number) => {
+  const breweries = await breweryInit();
+
+  const ret = await breweries.insertOne({
+    name, lat, lng
+  });
+
+  const brewery = {
+    id: ret.insertedId.toHexString(),
+    name,
+    lat,
+    lng
+  };
+
+  return brewery;
+}
+
 export const getBreweries = async () => {
   const breweries = await breweryInit();
   const ret = await breweries.find().toArray();

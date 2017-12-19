@@ -1,4 +1,4 @@
-import { getBreweries } from '../db/brewery';
+import { getBreweries, addBrewery } from '../db/brewery';
 import {
   setVisited as setVisitedDB,
   getVisited as getVisitedDB
@@ -7,6 +7,14 @@ import {
 export const allBreweries = async () => {
   return await getBreweries();
 };
+
+export const addBreweryResolver = async(_: any, { name, lat, lng }: { name: string, lat: number, lng: number }, context: any ) => {
+  if (!context.user || context.user.sub !== 'facebook|10213198044961330') {
+    return false;
+  }
+
+  return await addBrewery(name, lat, lng);
+}
 
 export const setVisited = async(_: any, { brewery, visited }: { brewery: string, visited: boolean }, context: any ) => {
   if (!context.user) {

@@ -1,7 +1,7 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import schema from './schemas/brewery.graphql';
-import { allBreweries, setVisited, getVisited } from './resolvers/brewery';
+import { allBreweries, setVisited, getVisited, addBreweryResolver } from './resolvers/brewery';
 
 const resolvers = {
   Query: {
@@ -9,6 +9,7 @@ const resolvers = {
   },
   Mutation: {
     setVisited,
+    addBrewery: addBreweryResolver,
   },
   Brewery: {
     visited: getVisited,

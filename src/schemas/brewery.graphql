@@ -24,4 +24,5 @@ type Query {
 
 type Mutation {
   setVisited(brewery: String!, visited: Boolean!): Brewery!
+  addBrewery(name: String!, lat: Float!, lng: Float!): Brewery!
 }
