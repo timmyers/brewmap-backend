@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 import init from './index';
 import { getBrewery } from './brewery';
+import log from '../logger';
 
 const visitInit = async () => {
   const db = await init();
@@ -37,8 +38,10 @@ export const setVisited = async(userID: string,
   return brewery;
 }
 
-export const getVisited = async(userID: string,
+export const getVisited = async (userID: string,
                                 breweryIDString: string) => {
+  log.info('getVisited');
+
   const visits = await visitInit();
 
   const breweryID = new ObjectId(breweryIDString);
@@ -51,4 +54,13 @@ export const getVisited = async(userID: string,
     return true;
   }
   return false;
+}
+
+export const getAllVisited = async (userID: string) => {
+  log.info({ userID }, 'getAllVisited');
+
+  const visits = await visitInit();
+
+  const visited = await visits.find({ user: userID }, { brewery: 1 }).toArray();
+  return visited.map(visit => visit.brewery.toHexString());
 }

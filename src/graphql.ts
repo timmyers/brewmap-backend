@@ -2,6 +2,7 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import schema from './schemas/brewery.graphql';
 import { allBreweries, setVisited, getVisited, addBreweryResolver } from './resolvers/brewery';
+import createDataLoaders from './resolvers/dataLoaders';
 
 const resolvers = {
   Query: {
@@ -20,7 +21,10 @@ const exeSchema = makeExecutableSchema({ typeDefs: schema, resolvers });
 
 export const graphql = graphqlExpress(req => ({
   schema: exeSchema,
-  context: { user: req.user },
+  context: {
+    user: req.user,
+    dataLoaders: createDataLoaders(req.user),
+  },
 }));
 
 export const graphiql = graphiqlExpress({ endpointURL: '/graphql' });

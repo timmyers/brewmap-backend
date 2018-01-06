@@ -29,6 +29,5 @@ export const getVisited = async(obj: any, params: any, context: any ) => {
     return null;
   }
 
-  const visited = await getVisitedDB(context.user.sub, obj.id);
-  return visited;
+  return await context.dataLoaders.breweryVisits.load(obj.id);
 }
