@@ -3,6 +3,7 @@ type Brewery {
 
   name: String!
   locationName: String
+  website: String
 
   lat: Float!
   lng: Float!
