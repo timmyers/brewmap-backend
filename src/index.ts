@@ -10,7 +10,7 @@ const PORT = 8080;
 
 const app = express();
 
-const whitelist = [process.env.corsOrigin, 'https://brewed-here.netlify.com/'];
+const whitelist = [process.env.corsOrigin, 'https://brewed-here.netlify.com'];
 const corsOptions = {
   origin: (origin: any, callback: any) => {
     if (whitelist.indexOf(origin) !== -1) {
