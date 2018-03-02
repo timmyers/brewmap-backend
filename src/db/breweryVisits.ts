@@ -11,6 +11,8 @@ const visitInit = async () => {
 export const setVisited = async(userID: string,
                                 breweryIDString: string,
                                 visited: boolean) => {
+  log.info({ userID }, 'setVisited');
+
   const visits = await visitInit();
 
   const breweryID = new ObjectId(breweryIDString);
@@ -57,10 +59,13 @@ export const getVisited = async (userID: string,
 }
 
 export const getAllVisited = async (userID: string) => {
-  log.info({ userID }, 'getAllVisited');
+  log.info({ userID }, 'getAllVisited db query');
 
   const visits = await visitInit();
 
   const visited = await visits.find({ user: userID }, { brewery: 1 }).toArray();
+
+  log.info({ userID, numVisited: visited.length }, 'getAllVisited db query results');
+
   return visited.map(visit => visit.brewery.toHexString());
 }

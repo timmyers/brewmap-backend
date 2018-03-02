@@ -10,8 +10,15 @@ const PORT = 8080;
 
 const app = express();
 
+const whitelist = [process.env.corsOrigin, 'https://brewed-here.netlify.com/'];
 const corsOptions = {
-  origin: process.env.corsOrigin,
+  origin: (origin: any, callback: any) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   allowedHeaders: 'Content-Type,Authorization',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }

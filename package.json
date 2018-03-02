@@ -43,7 +43,7 @@
       "command": "node dist/main.js",
       "env": {
         "DB_URL": "mongodb://localhost:27017/brewmap",
-        "corsOrigin": "http://localhost:9000",
+        "corsOrigin": "http://localhost:8000",
         "auth0Domain": "brewmap-dev.auth0.com"
       }
     }
